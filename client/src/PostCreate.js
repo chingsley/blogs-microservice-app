@@ -6,6 +6,7 @@ const PostCreate = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    if (title === "") return;
 
     await axios.post("http://localhost:4000/posts", {
       title,
