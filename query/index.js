@@ -19,14 +19,36 @@ app.post("/events", (req, res) => {
     posts[id] = { id, title, comments: [] };
   }
   if (type === "CommentCreated") {
-    const { id, content, postId } = data;
-    posts[postId].comments.push({ id, content });
+    const { postId } = data;
+    posts[postId].comments.push(data);
+  }
+  if (type === "CommentUpdated") {
+    const { postId, id } = data;
+    const comments = posts[postId].comments;
+    const comment = comments.find((comment) => comment.id === id);
+    for (const key in comment) {
+      comment[key] = data[key];
+    }
+    // comment.status = status;
   }
 
   console.log("posts = ", posts);
   res.send({});
 });
 
-app.listen(4002, () => {
-  console.log("running on port 4002");
+const PORT = 4002;
+const YELLOW = "\u001b[33m";
+const RESET = "\u001b[0m";
+
+app.listen(PORT, () => {
+  console.log(
+    "Running",
+    YELLOW,
+    "query service",
+    RESET,
+    "service on port",
+    YELLOW,
+    PORT,
+    RESET
+  );
 });
