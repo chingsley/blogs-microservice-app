@@ -35,6 +35,19 @@ app.post("/events", (req, res) => {
   res.send({});
 });
 
-app.listen(4000, () => {
-  console.log("Listening on 4000");
+const PORT = 4000;
+const YELLOW = "\u001b[33m";
+const RESET = "\u001b[0m";
+
+app.listen(PORT, () => {
+  console.log(
+    "Running",
+    YELLOW,
+    "posts",
+    RESET,
+    "service on port",
+    YELLOW,
+    PORT,
+    RESET
+  );
 });
