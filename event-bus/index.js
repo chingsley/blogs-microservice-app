@@ -11,8 +11,11 @@ const ports = {
   moderationService: 4003,
 };
 
+const events = [];
+
 app.post("/events", (req, res) => {
   const event = req.body;
+  events.push(event);
 
   axios
     .post(`http://localhost:${ports.postsService}/events`, event)
@@ -28,6 +31,10 @@ app.post("/events", (req, res) => {
     .catch((err) => console.log(err.message));
 
   res.send({ status: "OK" });
+});
+
+app.get("/events", (req, res) => {
+  res.send(events);
 });
 
 const PORT = 4005;
