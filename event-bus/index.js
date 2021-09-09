@@ -18,16 +18,16 @@ app.post("/events", (req, res) => {
   events.push(event);
 
   axios
-    .post(`http://localhost:${ports.postsService}/events`, event)
+    .post(`http://posts-clusterip-srv:${ports.postsService}/events`, event)
     .catch((err) => console.log(err.message));
   axios
-    .post(`http://localhost:${ports.commentsService}/events`, event)
+    .post(`http://comments-srv:${ports.commentsService}/events`, event)
     .catch((err) => console.log(err.message));
   axios
-    .post(`http://localhost:${ports.queryService}/events`, event)
+    .post(`http://query-srv:${ports.queryService}/events`, event)
     .catch((err) => console.log(err.message));
   axios
-    .post(`http://localhost:${ports.moderationService}/events`, event)
+    .post(`http://moderation-srv:${ports.moderationService}/events`, event)
     .catch((err) => console.log(err.message));
 
   res.send({ status: "OK" });

@@ -20,7 +20,7 @@ app.post("/posts", async (req, res) => {
   posts[id] = { id, title };
 
   await axios
-    .post("http://localhost:4005/events", {
+    .post("http://event-bus-srv:4005/events", {
       type: "PostCreated",
       data: { id, title },
     })
@@ -40,6 +40,7 @@ const YELLOW = "\u001b[33m";
 const RESET = "\u001b[0m";
 
 app.listen(PORT, () => {
+  console.log(YELLOW, "V55", RESET);
   console.log(
     "Running",
     YELLOW,
