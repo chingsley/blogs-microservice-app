@@ -55,7 +55,9 @@ app.listen(PORT, async () => {
   );
   try {
     const EVENT_BUS_PORT = 4005;
-    const res = await axios.get(`http://localhost:${EVENT_BUS_PORT}/events`);
+    const res = await axios.get(
+      `http://event-bus-srv:${EVENT_BUS_PORT}/events`
+    );
 
     for (let event of res.data) {
       console.log("Processing event:", event.type);
@@ -68,15 +70,15 @@ app.listen(PORT, async () => {
 });
 
 /**
- * 
+ *
  * app.listen(4002, async () => {
   console.log("Listening on 4002");
   try {
-    const res = await axios.get("http://localhost:4005/events");
- 
+    const res = await axios.get("http://event-bus-srv:4005/events");
+
     for (let event of res.data) {
       console.log("Processing event:", event.type);
- 
+
       handleEvent(event.type, event.data);
     }
   } catch (error) {
