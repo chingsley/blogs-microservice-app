@@ -40,7 +40,7 @@ const YELLOW = "\u001b[33m";
 const RESET = "\u001b[0m";
 
 app.listen(PORT, () => {
-  console.log(YELLOW, "V55", RESET);
+  console.log(YELLOW, "V1000", RESET);
   console.log(
     "Running",
     YELLOW,
